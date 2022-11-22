@@ -1,0 +1,103 @@
+.App {
+  padding: 20px;
+  margin: 20px;
+border: 1px solid black;
+}
+
+
+.button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.linkButton {
+  background-color: whitesmoke;
+  border: none;
+  color: black;
+  padding: 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  margin: 2px;
+  cursor: pointer;
+}
+
+.rowDiv {
+  display: flex;
+  flex-direction: row;
+
+}
+
+.formContainer {
+  padding: 20px;
+
+}
+
+input, textarea{
+  width: 70%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-left:5px;
+}
+
+.header {
+  background-color: grey;
+  display: flex;
+  justify-content: left;
+  padding-left: 5px;
+  margin-bottom:20px;
+  border-bottom: 1.5px solid black;
+}
+
+h6 {
+  color: black;
+  font-weight: bold;
+
+}
+
+
+.displaybox {
+  width: 100%;
+}
+
+.tableHeader {
+  padding-left: 1px;
+  padding-right: 2px;
+  background-color: sandybrown;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  color: black;
+}
+
+#list {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#list td,
+#list th {
+  padding: 8px;
+}
+
+#list tr:nth-child(even) {
+  background-color: lightgray;
+}
+
+#list tr:hover {
+  background-color: lightgrey;
+}
