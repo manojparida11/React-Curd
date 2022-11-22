@@ -8,6 +8,9 @@ In the project directory, you can run:
 
 ### `npm start`
 
+alo run json-server along with these:
+ json-server --watch data.json --port 3002
+
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
