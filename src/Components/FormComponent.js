@@ -14,14 +14,14 @@ export default class FormComponent extends React.Component {
             titleTag: "",
             description: "",
             keyword: "",
-            url: ""
+            url: "",
+            listArray: []
         }
     }
-    // handleSubmit = () => {
-    //     console.log("on handleSubmit");
-    //     let dataObject = {};
 
-    // }
+    componentDidMount() {
+        this.getLists();
+    }
 
     clearFields = () => {
         console.log("onclear click");
@@ -51,13 +51,61 @@ export default class FormComponent extends React.Component {
         };
 
         console.log("onObjectCreated::", dataObject);
+        this.addDataToJson(dataObject);
+    }
 
-
+    addDataToJson = (dataObject) => {
+        fetch("http://localhost:3002/List", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(dataObject)
+        }).then(
+            this.getLists(),
+            console.log("Added  Successfully:::"),
+            alert("Your Data Added Successfully")
+        );
     }
 
     onHandleChange = (e) => {
         e.preventDefault();
         this.setState({ [e.target.name]: e.target.value });
+    }
+
+    onClickEdit = (e) => {
+        console.log("onclick Edit:", e);
+    }
+
+    onClickDelete = (index, id) => {
+        console.log("onclick Delete:", index);
+        this.deleteList(index, id);
+    }
+
+    getLists() {
+        fetch("http://localhost:3002/List")
+            .then(res => res.json())
+            .then(result =>
+                this.setState({
+                    listArray: result
+                })
+            )
+            .catch(console.log);
+    }
+
+    deleteList(index, id) {
+        fetch("http://localhost:3002/List/" + id, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            //body: JSON.stringify(this.state.listArray[id])
+        })
+            // .then(res => res.json())
+            .then(result => {
+                console.log("result::", result);
+            });
+        this.getLists();
     }
 
     render() {
@@ -78,14 +126,21 @@ export default class FormComponent extends React.Component {
                         value={this.state.url}
                         labelTitle="Url"
                     />
+                    <Input
+                        name="content"
+                        id="content"
+                        handleChange={this.onHandleChange}
+                        value={this.state.content}
+                        labelTitle="Content"
+                    />
                 </div>
-                <>
+                {/* <>
                     <label for="content">Content:
                     </label>
                     <textarea id="content" name="content" rows="3" cols="50">
                         {this.state.content}
                     </textarea>
-                </>
+                </> */}
 
                 <Input
                     name="h1Tag"

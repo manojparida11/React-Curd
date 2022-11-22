@@ -1,6 +1,5 @@
 import React from 'react';
 import '../App.css';
-import Data from '../Data/Data.json';
 import LinkButton from '../shared/LinkButton';
 
 export default class DisplayComponent extends React.Component {
@@ -11,17 +10,24 @@ export default class DisplayComponent extends React.Component {
             listArray: []
         }
     }
-    onClickEdit = () => {
-        console.log("onclick Edit:");
-    }
-
-    onClickDelete = () => {
-        console.log("onclick Delete:");
-    }
 
     componentDidMount() {
         this.getLists();
     }
+
+    // componentDidUpdate() {
+    //     this.getLists();
+    // }
+
+    onClickEdit = (e) => {
+        console.log("onclick Edit:", e);
+    }
+
+    onClickDelete = (index, id) => {
+        console.log("onclick Delete:", index);
+        this.deleteList(index, id);
+    }
+
     getLists() {
         fetch("http://localhost:3002/List")
             .then(res => res.json())
@@ -32,6 +38,22 @@ export default class DisplayComponent extends React.Component {
             )
             .catch(console.log);
     }
+
+    deleteList(index, id) {
+        fetch("http://localhost:3002/List/" + id, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            //body: JSON.stringify(this.state.listArray[id])
+        })
+            // .then(res => res.json())
+            .then(result => {
+                console.log("result::", result);
+            });
+        this.getLists();
+    }
+
     render() {
         return (
             <div className="displaybox">
@@ -55,10 +77,10 @@ export default class DisplayComponent extends React.Component {
                                 <td>{item.type}</td>
                                 <td>{item.h1Tag}</td>
                                 <td>
-                                    <LinkButton title="Edit" onClickCall={this.onClickEdit} />
+                                    <LinkButton title="Edit" onClickCall={() => this.onClickEdit(index, item.id)} />
                                 </td>
                                 <td>
-                                    <LinkButton title="Delete" onClickCall={this.onClickDelete} />
+                                    <LinkButton title="Delete" onClickCall={() => this.onClickDelete(index, item.id)} />
                                 </td>
                             </tr>
                         ))}
