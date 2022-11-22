@@ -17,7 +17,8 @@ export default class App extends React.Component {
       keyword: "",
       url: "",
       listArray: [],
-      isEditClicked: false
+      isEditClicked: false,
+      tobeUpdated: {}
     }
   }
 
@@ -79,6 +80,7 @@ export default class App extends React.Component {
   onClickEdit = (index, item) => {
     console.log("onclick Edit:", index);
     this.setState({
+      tobeUpdated: { ...item },
       isEditClicked: true,
       type: item.type,
       content: item.content,
@@ -118,22 +120,33 @@ export default class App extends React.Component {
       });
     this.getLists();
   }
- 
 
-  updateList(updatedObject, id) { 
-    
-    // fetch("http://localhost:3002/List/" + id, {
-    //   method: "PUT",
-    //   headers: {
-    //     "Content-Type": "application/json"
-    //   },
-    //   body: JSON.stringify(updatedObject)
-    // })
-    //   .then(res => res.json())
-    //   .then(result => {
-    //     console.log("updated List:::", result);
-    //     this.getLists();
-    //   });
+
+  updateList = () => {
+    console.log("update Object:::", this.state.tobeUpdated);
+    let newObject = {
+      id: this.state.tobeUpdated.id,
+      type: this.state.type,
+      content: this.state.content,
+      h1Tag: this.state.h1Tag,
+      titleTag: this.state.titleTag,
+      description: this.state.description,
+      keyword: this.state.keyword,
+      url: this.state.url
+    }
+    fetch("http://localhost:3002/List/" + this.state.tobeUpdated.id, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(newObject)
+    })
+      .then(res => res.json())
+      .then(result => {
+        console.log("updated List:::", result);
+        this.getLists();
+        this.clearFields();
+      });
   }
 
   render() {
@@ -193,7 +206,7 @@ export default class App extends React.Component {
             labelTitle="keyword"
           />
           <div>
-            {this.state.isEditClicked ? <Button title="Update" onClickCall={this.updateList} /> : <Button title="Save" onClickCall={this.onSave} />}
+            {this.state.isEditClicked ? <Button title="Update" onClickCall={() => this.updateList()} /> : <Button title="Save" onClickCall={this.onSave} />}
             <Button title="Clear" onClickCall={this.clearFields} />
           </div>
         </div>
