@@ -177,15 +177,15 @@ export default class App extends React.Component {
               value={this.state.url}
               labelTitle="Url"
             />
-            <Input
-              name="content"
-              id="content"
-              handleChange={this.onHandleChange}
-              value={this.state.content}
-              labelTitle="Content"
-            />
-          </div>
 
+          </div>
+          <Input
+            name="content"
+            id="content"
+            handleChange={this.onHandleChange}
+            value={this.state.content}
+            labelTitle="Content"
+          />
           <Input
             name="h1Tag"
             id="h1Tag"

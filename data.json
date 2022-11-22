@@ -1,0 +1,54 @@
+{
+  "List": [
+    {
+      "id": "23",
+      "type": "Acting",
+      "content": "do acting",
+      "h1Tag": "do acting",
+      "titleTag": "Actor1",
+      "description": "Bollywood",
+      "keyword": "bollywood",
+      "url": "www.acting.com"
+    },
+    {
+      "id": "45",
+      "type": "Agriculture",
+      "content": "Farming",
+      "h1Tag": "Agriculture",
+      "titleTag": "Farm and Farming",
+      "description": "Do Farming ",
+      "keyword": "Farm",
+      "url": "www.Agri.com"
+    },
+    {
+      "id": "60",
+      "type": "RDeveloper",
+      "content": "coding",
+      "h1Tag": "Vuecoding",
+      "titleTag": "Coing",
+      "description": "React",
+      "keyword": "React",
+      "url": "www.dev.com"
+    },
+    {
+      "id": 57,
+      "type": "teacher",
+      "content": "lecture",
+      "h1Tag": "Lecturer",
+      "titleTag": "teaching",
+      "description": "teaching",
+      "keyword": "teaching",
+      "url": "teacher.com"
+    },
+    {
+      "id": 97,
+      "type": "Dancer",
+      "content": "Dancing",
+      "h1Tag": "Dancer",
+      "titleTag": "Dancng",
+      "description": "Dancing",
+      "keyword": "Dancing",
+      "url": "Dancer.com"
+    }
+  ]
+}

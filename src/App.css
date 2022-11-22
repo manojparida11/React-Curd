@@ -1,7 +1,7 @@
 .App {
   padding: 20px;
   margin: 20px;
-border: 1px solid black;
+  border: 1px solid black;
 }
 
 
@@ -34,38 +34,43 @@ border: 1px solid black;
 .rowDiv {
   display: flex;
   flex-direction: row;
+  width: 100%;
 
 }
 
 .formContainer {
   padding: 20px;
-
 }
 
-input, textarea{
+.inputContainer {
+  width: 100%;
+}
+
+input,
+textarea {
   width: 70%;
-  padding: 12px 20px;
+  padding: 12px;
   margin: 8px 0;
   display: inline-block;
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
-  margin-left:5px;
+  margin-left: 5px;
 }
 
 .header {
   background-color: grey;
   display: flex;
   justify-content: left;
-  padding-left: 5px;
-  margin-bottom:20px;
+  margin-bottom: 20px;
   border-bottom: 1.5px solid black;
+  height: 92px;
 }
 
 h6 {
   color: black;
   font-weight: bold;
-
+  font-size: 24px;
 }
 
 
