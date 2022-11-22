@@ -5,7 +5,7 @@ function Input({ labelTitle, id, name, value, handleChange }) {
     return (
         <div>
             <label htmlFor={id}>
-                {labelTitle }: 
+                {labelTitle}: 
                 <input id={id} type="text" name={name} value={value} onChange={handleChange} />
             </label>
         </div>

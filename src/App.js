@@ -16,16 +16,18 @@ export default class App extends React.Component {
       description: "",
       keyword: "",
       url: "",
-      listArray: [],
-      isEditClicked: false,
-      tobeUpdated: {}
+      listArray: [],//the complete list is stored
+      isEditClicked: false,//to check weeather the edit is enabled
+      tobeUpdated: {}//to be used for edit func
     }
   }
 
+  //Calling the function at page load
   componentDidMount() {
     this.getLists();
   }
 
+  //used for clearing feilds
   clearFields = () => {
     console.log("onclear click");
     this.setState({
@@ -39,6 +41,7 @@ export default class App extends React.Component {
     });
   }
 
+  //called on save button click
   onSave = () => {
     console.log('onsave click');
     let id = Math.floor(Math.random() * 100) + 1;
@@ -57,26 +60,13 @@ export default class App extends React.Component {
     this.addDataToJson(dataObject);
   }
 
-  addDataToJson = (dataObject) => {
-    fetch("http://localhost:3002/List", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(dataObject)
-    }).then(
-      this.getLists(),
-      this.clearFields(),
-      console.log("Added  Successfully:::"),
-      alert("Your Data Added Successfully")
-    );
-  }
-
+  //called when the input method update data
   onHandleChange = (e) => {
     e.preventDefault();
     this.setState({ [e.target.name]: e.target.value });
   }
 
+  //called on edit button click
   onClickEdit = (index, item) => {
     console.log("onclick Edit:", index);
     this.setState({
@@ -92,11 +82,13 @@ export default class App extends React.Component {
     })
   }
 
+  //called on delete button click
   onClickDelete = (index, id) => {
     console.log("onclick Delete:", index);
     this.deleteList(index, id);
   }
 
+  //get the data from json
   getLists() {
     fetch("http://localhost:3002/List")
       .then(res => res.json())
@@ -108,6 +100,23 @@ export default class App extends React.Component {
       .catch(console.log);
   }
 
+  //add the data to json
+  addDataToJson = (dataObject) => {
+    fetch("http://localhost:3002/List", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(dataObject)
+    }).then(
+      this.getLists(),
+      this.clearFields(),
+      console.log("Added  Successfully:::"),
+      alert("Your Data Added Successfully")
+    );
+  }
+
+  //delete the data in json
   deleteList(index, id) {
     fetch("http://localhost:3002/List/" + id, {
       method: "DELETE",
@@ -121,7 +130,7 @@ export default class App extends React.Component {
     this.getLists();
   }
 
-
+  //update the data in json
   updateList = () => {
     console.log("update Object:::", this.state.tobeUpdated);
     let newObject = {
